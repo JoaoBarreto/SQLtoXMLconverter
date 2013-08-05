@@ -1,0 +1,8 @@
+c:\users\barreto\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+c:\users\barreto\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+c:\users\barreto\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+c:\users\barreto\documents\visual studio 2012\Projects\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Barreto\Documents\Visual Studio 2012\Projects\ConsoleApplication1\SQLtoXMLconverter\obj\Debug\ConsoleApplication1.exe
+C:\Users\Barreto\Documents\Visual Studio 2012\Projects\ConsoleApplication1\SQLtoXMLconverter\obj\Debug\ConsoleApplication1.pdb
+F:\ConsoleApplication1\SQLtoXMLconverter\obj\Debug\ConsoleApplication1.exe
+F:\ConsoleApplication1\SQLtoXMLconverter\obj\Debug\ConsoleApplication1.pdb
