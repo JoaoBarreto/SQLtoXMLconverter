@@ -1,0 +1,1 @@
+C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\ntec_query_collector_dll\obj\Debug\ntec_query_collector_dll.csprojResolveAssemblyReference.cache

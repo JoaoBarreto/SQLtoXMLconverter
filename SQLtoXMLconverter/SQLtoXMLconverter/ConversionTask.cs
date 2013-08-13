@@ -4,25 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.IO;
+using System.Data;
 
 namespace SQLtoXMLconverter
 {
     class ConversionTask
     {
-        private String filePathForXMLFiles;
+        private Query query;
 
-        public ConversionTask(String filePathForXMLFiles)
+        public ConversionTask(Query query)
         {
-            this.filePathForXMLFiles = filePathForXMLFiles;
+            this.query = query;
         }
 
-        // Quando a task arranca deve ser criado um novo ficheiro 
         public void run(Object threadContext)
         {
-            int worker = 0;
-            int available = 0;
-            ThreadPool.GetAvailableThreads(out worker, out available);
-            Console.WriteLine("Worker:" + worker.ToString() + " | " + "Available:" + available.ToString() + " | " + "CurrentThread " + Thread.CurrentThread.ManagedThreadId.ToString() + " " + filePathForXMLFiles);
+            StreamWriter xmlDoc = new StreamWriter(query.XmlFile, false);
+
+            DataSet ds = BdConnectOleDb.GetData(query.Conn, query.Sql);
+           
+            ds.WriteXml(xmlDoc);
+            xmlDoc.Close();
+
+            ds.Dispose();
         }
     }
 }

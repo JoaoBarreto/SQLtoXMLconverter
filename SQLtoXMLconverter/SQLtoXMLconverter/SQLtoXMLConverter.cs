@@ -3,90 +3,77 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-
 using System.Data;
+using System.IO;
+
 
 namespace SQLtoXMLconverter
 {
     class SQLtoXMLConverter
     {
+        private Queue<Query> queryQueue;
+        private String xmlFolder;
+        private bool xmlSchemaIsActive;
         private int numberOfThreads;
-        private String filePathForXMLFiles;
-        private Queue<ConversionTask> queue = new Queue<ConversionTask>();
 
-        //Constructor
-        public SQLtoXMLConverter(String filePathForXMLFiles, int numberOfThreads)
+        private FileInfo folder;
+
+        public SQLtoXMLConverter(Queue<Query> queryQueue, String xmlFolder, bool xmlSchemaIsActive, int numberOfThreads)
         {
-            this.filePathForXMLFiles = filePathForXMLFiles;
+            this.queryQueue = queryQueue;
+            this.xmlFolder = xmlFolder;
+            this.xmlSchemaIsActive = xmlSchemaIsActive;
             this.numberOfThreads = numberOfThreads;
+
+            //ThreadPool configuration
             ThreadPool.SetMaxThreads(numberOfThreads, numberOfThreads);
 
-            //For Testing porpuses - DELETE IN THE FUTURE
-            prepTestTasks();
+            //For validation of folder to save files
+            folder = new FileInfo(xmlFolder);
         }
 
         // Getters
-        public String getFilePathForXMLFiles { get { return filePathForXMLFiles; } }
-
+        public String getPathXmlFolder { get { return xmlFolder; } }
+        public bool isXmlSchemaActive { get { return xmlSchemaIsActive; } }
 
         //--------------- Methods -----------------------
-      public void run()
+        public void run()
         {
-            
-            Console.WriteLine("Main thread started. ThreadID = ", Thread.CurrentThread.ManagedThreadId);
-            ConversionTask task = null;
-            while (queue.Count != 0)
+            Console.WriteLine("-- CONVERTION STARTED --");
+
+            if (folder.Exists)
+                startConvertion();
+            else
             {
-                task = queue.Dequeue();
+                folder.Directory.Create();
+                startConvertion();
+            }
+
+            Console.WriteLine("CONVERTION COMPLETED - Files saved to: " + xmlFolder + "\n PRESS ENTER TO CLOSE.");
+            Console.ReadLine();
+
+        }
+
+        private void startConvertion()
+        {
+            ConversionTask task = null;
+            while (queryQueue.Count != 0)
+            {
+                task = new ConversionTask(queryQueue.Dequeue());
                 ThreadPool.QueueUserWorkItem(new WaitCallback(task.run));
             }
 
+            threadBarrier();
+        }
+
+        private void threadBarrier()
+        {
             Thread.Sleep(1000);
             int worker = 0;
             int available = 0;
-          
-            // - Espera activa. Não consegui fazer isto de outra maneira.
+
             while (worker != numberOfThreads)
                 ThreadPool.GetAvailableThreads(out worker, out available);
-
-            Console.WriteLine("JOB COMPLETED - PRESS ENTER TO CLOSE");
-            Console.ReadLine();
-
         }
-        public void runToXML()
-        {
-            // Create two DataTable instances.
-	        DataTable table1 = new DataTable("patients");
-	        table1.Columns.Add("name");
-	        table1.Columns.Add("id");
-	        table1.Rows.Add("sam", 1);
-	        table1.Rows.Add("mark", 2);
-
-	        DataTable table2 = new DataTable("medications");
-	        table2.Columns.Add("id");
-	        table2.Columns.Add("medication");
-	        table2.Rows.Add(1, "atenolol");
-	        table2.Rows.Add(2, "amoxicillin");
-
-	        // Create a DataSet and put both tables in it.
-	        DataSet set = new DataSet("office");
-	        set.Tables.Add(table1);
-	        set.Tables.Add(table2);
-
-	        // Visualize DataSet.
-	        Console.WriteLine(set.GetXml());
-            Console.ReadLine();
-            
-        }
-
-
-
-        //TestPrep ----- FOR TESTING PORPUSES - DELETE IN THE FUTURE ---------------
-        private void prepTestTasks()
-        {
-            for (int i = 1; i < 1000; i++)
-                queue.Enqueue(new ConversionTask("TaskNumber " + i));
-        }
-
     }
 }
