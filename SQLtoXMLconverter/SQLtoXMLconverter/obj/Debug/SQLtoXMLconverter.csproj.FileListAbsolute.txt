@@ -1,5 +1,0 @@
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\obj\Debug\SQLtoXMLconverter.csprojResolveAssemblyReference.cache
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\bin\Debug\SQLtoXMLconverter.exe
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\bin\Debug\SQLtoXMLconverter.pdb
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\obj\Debug\SQLtoXMLconverter.exe
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\obj\Debug\SQLtoXMLconverter.pdb
