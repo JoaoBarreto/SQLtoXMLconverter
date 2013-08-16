@@ -1,4 +1,0 @@
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\bin\Release\SQLtoXMLconverter.exe
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\bin\Release\SQLtoXMLconverter.pdb
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\obj\Release\SQLtoXMLconverter.exe
-C:\Users\Barreto\Documents\GitHub\SQLtoXMLconverter\SQLtoXMLconverter\SQLtoXMLconverter\obj\Release\SQLtoXMLconverter.pdb
